@@ -23,37 +23,45 @@ for i,pin in enumerate(motor_pins):
 
 def SetAngle(motor_id, angle, sleep_time = 3):
     for i,j in enumerate(motor_id):
-        duty = angle[i] / 18 + 2
+        duty = angle[i]
+        print(duty)
         GPIO.output(motor_pins[j], True)
         pwm[j].ChangeDutyCycle(duty)
     time.sleep(sleep_time)
     for i,j in enumerate(motor_id):
-        GPIO.output(motor_pins[j], True)
-    # pwm[motor_id].ChangeDutyCycle(0)
+        print(i, j, motor_id)
+        pwm[j].ChangeDutyCycle(0)
+        GPIO.output(motor_pins[j], False)
 
-    
+for i in range(100):
+   SetAngle([1], [1], 1)   
+   SetAngle([1], [1.5], 1)
+   SetAngle([1], [2], 1)
 
-for i in range(10):
-   SetAngle([0,1,2,3], [90,90,90,90], 0.1)
+
+# for i in range(100):
+#    SetAngle([0,1,2,3], [90,90,90,90], 10)
 # test up and down
-for i in range(10):
-    SetAngle([0,1,2,3], [150,150,30,30], 0.5)
-    SetAngle([0,1,2,3], [40,40,140,140], 0.5)
+for i in range(1000):
+    SetAngle([0,1,2,3], [150,150,30,30], 0.1)
+    SetAngle([0,1,2,3], [40,40,140,140], 0.1)
 # 
 # SetAngle([0,1,2,3], [90,90,90,90], 0.1)
 # time.sleep(10)
 # test planta and dorsi (x axis)
-for i in range(10):
+print('planta dorsi')
+for i in range(100):
     # planta
-    SetAngle([0,1,2,3], [120,58,120,60], 1)
-    SetAngle([0,1,2,3], [60,120,60,120], 1)
+    SetAngle([0,1,2,3], [120,58,120,60], 0.1)
+    SetAngle([0,1,2,3], [60,120,60,120], 0.1)
 # 
 SetAngle([0,1,2,3], [90,90,90,90], 0.1)
 # test inversion and eversion (y axis)
-for i in range(10):
+print('inversion eversion')
+for i in range(100):
     # inversion
-    SetAngle([0,1,2,3], [120,118,120,120], 1)
-    SetAngle([0,1,2,3], [60,58,60,60], 1)
+    SetAngle([0,1,2,3], [120,118,120,120], 0.1)
+    SetAngle([0,1,2,3], [60,58,60,60], 0.1)
 SetAngle([0,1,2,3], [90,90,90,90], 0.5)
 # 
 # # test inversion and eversion (x axis)
